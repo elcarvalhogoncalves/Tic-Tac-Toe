@@ -1,0 +1,58 @@
+.home{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 35px;
+    height: 100%;
+        
+}
+
+
+
+.home figure{
+    background-image: url("../../images/TicTacToe.png");
+    width: 258px;
+    height: 295px;
+}
+
+.home .botao{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.home .botao button{
+    background: #6BB340;
+    border: 4px solid rgba(0, 0, 0, 0.2);
+    box-shadow: -6px 6px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    cursor: pointer;
+    width: 450px;
+    padding-block: 15px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+
+.home .botao button:hover{
+    background: #66c131;
+    box-shadow: -6px 6px 6px rgba(0, 0, 0, 0.2);
+}
+
+.home button p {
+    font-size: 52px;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+    text-align: center;
+}
+
+.home button span{
+    font-weight: 900;
+    font-size: 35px;
+    color: #498A22;
+}    

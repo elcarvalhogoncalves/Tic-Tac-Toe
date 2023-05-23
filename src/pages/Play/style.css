@@ -1,0 +1,244 @@
+.play{
+    display: flex;
+    max-width: 466px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center ;
+    gap: 12px;
+    }
+
+.play .score-bar{
+    display: flex;
+    width: 100%;
+
+    justify-content: space-between;
+}
+
+
+.score-bar p{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0, 0, 0, 0.45);
+}
+
+.score-bar .score .player p{
+    justify-content: center;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    color: #fff;
+}
+
+.playerPhoto {
+    display: flex;
+    width: 48px;
+    height: 48px;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: rgba(0,0,0, 0.5);
+    background: #6421AB;
+    border-radius: 8px;
+}
+
+
+
+.play .score-bar .score{
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+    padding-bottom: 5px;
+
+    width: 188px;
+    height: 72px;
+    border-radius: 8px;
+    background-color: #5A1D9A;
+}
+
+.turn{
+    outline: 4px solid rgba(0, 255, 103, 0.8);
+}
+
+.score-bar .score .scorePlayer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.score-bar .score .scorePlayer h3{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.score-bar .score .scorePlayer p{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 32px;
+    color: #fff;
+}
+
+.pick{
+    width: 100%;
+}
+
+.top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-content: center;    
+    width: 100%;
+}
+.button-top a{
+    padding: 0;
+    margin: 0;
+    height: fit-content;
+}
+.button-top{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:16px;
+    font-size: 36px;    
+    color: #fff;
+}
+
+
+.top .button-top .but{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: #6BB340;
+    border: 4px solid rgba(0, 0, 0, 0.15);
+    box-shadow: -6px 6px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.top .button-top .but:hover{
+    border: 4px solid rgba(0, 0, 0, 0.2);
+}
+
+.top .button-top .but_red{
+    background: #9A031E;
+}
+
+.play figure{
+    
+    background: url(../../images/TicTacToeSmall.png);
+    background-position: -6px 0px;
+    width: 206px;
+    height: 51px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.play .botao{
+    display: flex;
+    gap: 25px;
+    flex-direction: row;
+}
+
+.play .botao button{
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 150px;
+    height: 150px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    transition: 0.05s linear;
+    padding: auto;
+}
+.play .botao button:hover{
+    border: 4px solid rgba(0, 0, 0, 0.2);
+
+}
+
+.play button p {
+    font-size: 52px;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+    text-align: center;
+}
+
+.play button span{
+    font-weight: 900;
+    font-size: 35px;
+    color: #498A22;
+}    
+
+.historico {
+    width: 100%;
+    justify-content: end;
+}
+
+.historico p{
+    text-align: end;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    color: #fff;
+}   
+
+
+.game{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 466px;
+}
+.celula{
+    width: 130px;
+    height: 130px;
+    border: 8.5px solid #fff;
+}
+
+.celula-c1{
+    border-top: none;
+    border-left: none;
+}
+.celula-c2{
+    border-top: none;
+}
+.celula-c3{
+    border-top: none;
+    border-right: none;
+}
+.celula-c4{
+    border-left: none;
+}
+.celula-c6{
+    border-right: none;
+}
+.celula-c7{
+    border-left: none;
+    border-bottom: none;
+}
+.celula-c8{
+    border-bottom: none;
+}
+.celula-c9{
+    border-right: none;
+    border-bottom: none;
+}
