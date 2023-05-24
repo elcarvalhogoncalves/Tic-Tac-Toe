@@ -5,7 +5,6 @@
     justify-content: center;
     gap: 15px;
     margin-bottom: 45px;
-        
 }
 .pick{
     width: 100%;
@@ -80,3 +79,14 @@
     font-size: 35px;
     color: #498A22;
 }    
+
+
+@media screen and (max-width:570px) {
+    .choice p{
+        font-size: 20px;
+    }
+    .choice .botao{
+        gap: 5px;
+    }
+    
+}

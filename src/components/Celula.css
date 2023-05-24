@@ -33,3 +33,13 @@
     opacity: 1;
 
 }
+
+@media screen and (max-width:570px) {
+    .xORo{
+        font-size: 80px;
+    }
+
+    .xORoHover:hover{
+        font-size: 80px;    
+    }
+}

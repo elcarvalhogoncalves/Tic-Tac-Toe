@@ -11,7 +11,6 @@
 .play .score-bar{
     display: flex;
     width: 100%;
-
     justify-content: space-between;
 }
 
@@ -262,4 +261,26 @@
 .celula-c9{
     border-right: none;
     border-bottom: none;
+}
+
+
+
+@media screen and (max-width:570px) {
+    .play{
+        max-width: 320px;        
+    }
+    .game{
+        width: 320px;
+    }
+    .celula{
+        width: 106px;
+        height: 106px;
+    }
+    .score-bar p{
+        font-size: 24px;
+    }
+    .play .score-bar .score{
+        width: 135px;
+    }
+
 }

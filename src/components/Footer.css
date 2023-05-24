@@ -4,8 +4,13 @@ footer p{
     font-weight: 400;
     font-size: 16px;
     line-height: 22px;
-
     color: #FFFFFF;
     text-align: center;
     text-shadow: -2px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+@media screen and (max-width:570px) {
+    footer p{
+        font-size: 13px;
+    }
 }
