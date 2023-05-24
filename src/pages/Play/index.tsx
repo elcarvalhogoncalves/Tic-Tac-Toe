@@ -3,7 +3,7 @@ import "./style.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRotateRight,faChevronDown, faChevronUp, faUser, faRobot } from '@fortawesome/free-solid-svg-icons'
 import Celula from "../../components/Celula"
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import tttContext from "../../context/TicTacToe.ts";
 import { Link } from "react-router-dom"
 // let ganhador
@@ -58,23 +58,29 @@ export default function Play(){
     const [sHistorico, setShowHistorico] = useState(false);
     const {game, setGame}: any = useContext(tttContext);
 
+    
+
 
     function turnAround(){
-        
         if(checkWhoWin()) return
         setGame((prevObjeto: any) => ({
             ...prevObjeto,
-            turn: (game.turn === 0 ? 1 : 0),
+            turn: game.turn === 0 ? 1 : 0,
         }));
-
-        if(game.turn === 0 ){
-            setGame((prevObjeto: any) => ({
-                ...prevObjeto,
-                jogadaBot: mrRobot(),
-              }));
-        }
     }    
 
+    useEffect(()=>{
+        if(game.bot ===true && game.turn === 1){
+            setarJogadaBot();
+        }
+    },[game.turn]);
+    function setarJogadaBot(){
+        setGame((prevObjeto: any) => ({
+            ...prevObjeto,
+            jogadaBot: mrRobot(),
+          }));
+          //console.log(game.jogadaBot)
+    }
 
     function checkWhoWin(){
         if(whoWin(game.table) != null){
@@ -134,6 +140,9 @@ export default function Play(){
     }
 
     function addHistorico(e:any){
+        setTimeout(() => {
+            reset()
+          }, 1000);
         const string = e != 'velha' ? `${e} ganhou`: <strong>Aah, deu velha...</strong>
         setGame((prevObjeto: any) => ({
             ...prevObjeto,
@@ -152,13 +161,14 @@ export default function Play(){
     }
 
     function reset(){
+        sHistorico === true ? setShowHistorico(!sHistorico):setShowHistorico(sHistorico);
         setGame((prevObjeto: any) => ({
             ...prevObjeto,
+            jogadaBot:10,
             turn: 0,
             table: ['', '', '', '', '', '', '', '', ''],
             winner: [],
           }));
-          sHistorico === true ? showHistorico():'';
           setReset(!rst);
     }
 

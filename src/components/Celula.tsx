@@ -19,12 +19,13 @@ export default function Celula(props:any){
     }, [props.reset]);
 
     useEffect(() => {
-        
-        setTimeout(() => {
-            if(game.bot === true && props.id === game.jogadaBot && selected === false){
-                turn();
-            }
-          }, 750);
+        if(game.turn === 1 && game.bot === true && props.id === game.jogadaBot && selected === false){
+            setTimeout(() => {
+                    console.log("Robo vai jogar em ", game.jogadaBot)
+                    turn();
+                    console.log("Robo Jogou em ",props.id)
+                }, 750);
+        }
 
     }, [game.jogadaBot]);
 
