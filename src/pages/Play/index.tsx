@@ -232,7 +232,7 @@ export default function Play(){
 
             <section className="historico">
 
-                <section><p onClick={showHistorico}>Histórico {sHistorico === true ? <FontAwesomeIcon icon={faChevronUp} /> : <FontAwesomeIcon icon={faChevronDown} />}</p></section>
+                <section className="historicoBar"><p onClick={showHistorico}>Histórico {sHistorico === true ? <FontAwesomeIcon icon={faChevronUp} /> : <FontAwesomeIcon icon={faChevronDown} />}</p></section>
                 {
                     sHistorico === true ? 
                         <section className="list">

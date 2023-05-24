@@ -190,7 +190,7 @@
     width: 100%;
     justify-content: end;
 }
-.historico section{
+.historico .historicoBar{
     display: flex;
     justify-content: end;
 }
