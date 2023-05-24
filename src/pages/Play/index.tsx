@@ -231,7 +231,8 @@ export default function Play(){
             </section>
 
             <section className="historico">
-                <p onClick={showHistorico}>Histórico {sHistorico === true ? <FontAwesomeIcon icon={faChevronUp} /> : <FontAwesomeIcon icon={faChevronDown} />}</p>
+
+                <section><p onClick={showHistorico}>Histórico {sHistorico === true ? <FontAwesomeIcon icon={faChevronUp} /> : <FontAwesomeIcon icon={faChevronDown} />}</p></section>
                 {
                     sHistorico === true ? 
                         <section className="list">
@@ -247,10 +248,7 @@ export default function Play(){
                             
                         </section>
                     : ''
-
-
                 }
-
             </section>
             
             <section className="game">
