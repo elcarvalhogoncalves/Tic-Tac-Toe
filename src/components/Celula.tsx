@@ -53,7 +53,7 @@ export default function Celula(props:any){
 
     return(
         <>
-            {(game.winner.length > 1 && selected === false) || (game.turn === 1 && selected === false)  ? '':((selected === false ? <div onClick={turn} className='xORoHover'><p>{game.pick[game.turn] === 'x' ? <FontAwesomeIcon icon={faXmark} /> : <FontAwesomeIcon icon={faO} />}</p></div> : <div onClick={turn} className={`xORo ${ (game.winner).includes(props.id) === true ? 'green' : !(game.winner).includes(props.id) === true && (game.winner.length > 1) ? 'opaco' : ''}`}><p>{whatpicked === "x" ? <FontAwesomeIcon icon={faXmark} /> : <FontAwesomeIcon icon={faO} />}</p></div>))}
+            {(game.winner.length > 1 && selected === false) || (game.bot === 1 &&game.turn === 1 && selected === false)  ? '':((selected === false ? <div onClick={turn} className='xORoHover'><p>{game.pick[game.turn] === 'x' ? <FontAwesomeIcon icon={faXmark} /> : <FontAwesomeIcon icon={faO} />}</p></div> : <div onClick={turn} className={`xORo ${ (game.winner).includes(props.id) === true ? 'green' : !(game.winner).includes(props.id) === true && (game.winner.length > 1) ? 'opaco' : ''}`}><p>{whatpicked === "x" ? <FontAwesomeIcon icon={faXmark} /> : <FontAwesomeIcon icon={faO} />}</p></div>))}
             
         </>
     )
