@@ -190,7 +190,7 @@
     width: 100%;
     justify-content: end;
 }
-.historico .historicoBar{
+.historico section{
     display: flex;
     justify-content: end;
 }
@@ -200,13 +200,15 @@
     font-weight: 500;
     font-size: 14px;
     color: #fff;
+}
+.historico .historicoBar p{
     cursor: pointer;
-    display: inline-block;
-    
+    display: inline-block;   
 }
 .historico .list{
     display: flex;
     flex-direction: column-reverse;
+    
     padding: 7px;
     font-family: 'Montserrat';
     font-style: normal;
