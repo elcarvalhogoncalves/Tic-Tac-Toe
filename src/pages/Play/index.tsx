@@ -143,6 +143,7 @@ export default function Play(){
     }
 
     function addScore(e:any){
+        console.log(e,"<<<<<<<")
         setGame((prevObjeto: any) => ({
             ...prevObjeto,
             score: [e === 0 ? game.score[0]++ : game.score[0] , e === 1 ? game.score[1]++ : game.score[1]],
