@@ -1,13 +1,7 @@
 import { useState } from 'react'
-import { BrowserRouter, Routes , Route, Link } from "react-router-dom"
 import { Outlet } from 'react-router-dom'
 import tttContext from './context/TicTacToe.ts'
 import './App.css'
-
-// Paginas
-import Home from "./pages/Home/index.tsx"
-import Pick from "./pages/Choice/index.tsx"
-import Play from "./pages/Play/index.tsx"
 
 import Footer from "./components/Footer.tsx"
 

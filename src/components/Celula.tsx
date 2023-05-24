@@ -3,21 +3,19 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { faO } from '@fortawesome/free-solid-svg-icons'
 
 import './Celula.css'
-import React , { useContext, useState, useEffect } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import tttContext from "../context/TicTacToe.ts";
 
 export default function Celula(props:any){
 
     const {game, setGame}: any = useContext(tttContext);
     const [selected, setSelected] = useState(false);
-    const [blocked, setBlocked] = useState(false);
     const [whatpicked, setPicked] = useState(null)
     
 
     useEffect(() => {
         setSelected(false);
         setPicked(null)
-        setBlocked(false)
     }, [props.reset]);
 
     useEffect(() => {

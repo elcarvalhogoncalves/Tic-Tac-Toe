@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom"
-import React , { useContext, useState } from 'react';
+import { useContext } from 'react';
 
 import "./style.css"
 import tttContext from "../../context/TicTacToe.ts";
 
 function Home() {
-    const {game, setGame}: any = useContext(tttContext);
+    const {setGame}: any = useContext(tttContext);
 
     function reset(){
         setGame(() => ({

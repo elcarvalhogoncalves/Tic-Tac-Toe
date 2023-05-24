@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom"
 import "./style.css"
-import React , { useContext } from 'react';
+import { useContext } from 'react';
 import tttContext from "../../context/TicTacToe.ts";
 
 export default function Choice(){
 
-    const {game, setGame}: any = useContext(tttContext);
+    const {setGame}: any = useContext(tttContext);
     function setPick(e: number){
         setGame((prevObjeto: any) => ({
             ...prevObjeto,

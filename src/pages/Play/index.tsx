@@ -1,10 +1,9 @@
 
 import "./style.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse } from '@fortawesome/free-solid-svg-icons'
 import { faRotateRight,faChevronDown, faChevronUp, faUser, faRobot } from '@fortawesome/free-solid-svg-icons'
 import Celula from "../../components/Celula"
-import React , { useContext, useState, useEffect } from 'react';
+import { useContext, useState } from 'react';
 import tttContext from "../../context/TicTacToe.ts";
 import { Link } from "react-router-dom"
 // let ganhador
