@@ -53,13 +53,12 @@
 .play .score-bar .score{
     display: flex;
     align-items: center;
-    padding-left: 5px;
+    padding-left: 8px;
     padding-bottom: 5px;
-
-    width: 188px;
+    width: 203px;
     height: 72px;
     border-radius: 8px;
-    background-color: #5A1D9A;
+    background-color: #4c1a81;
 }
 
 .turn{
