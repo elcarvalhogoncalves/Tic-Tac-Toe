@@ -1,3 +1,4 @@
+
 .home{
     display: flex;
     flex-direction: column;
@@ -20,6 +21,7 @@
 .home .botao{
     display: flex;
     flex-direction: column;
+    text-decoration: none;
     gap: 25px;
 }
 
@@ -36,7 +38,9 @@
     align-items: center;
     justify-content: center;
     gap: 25px;
+    
 }
+
 
 .home .botao button:hover{
     background: #66c131;
@@ -44,6 +48,7 @@
 }
 
 .home button p {
+    
     font-size: 52px;
     font-weight: 600;
     color: #fff;

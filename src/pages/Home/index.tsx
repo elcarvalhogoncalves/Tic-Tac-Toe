@@ -1,15 +1,31 @@
 import { Link } from "react-router-dom"
-import React , { useState } from 'react';
-
+import React , { useContext, useState } from 'react';
 
 import "./style.css"
+import tttContext from "../../context/TicTacToe.ts";
 
-function Home( props:  any ) {
+function Home() {
+    const {game, setGame}: any = useContext(tttContext);
 
-    const setAdversario = (e: any) => {
-        props.paginaAtual(2);
-        props.adversario(e);
-    };
+    function reset(){
+        setGame(() => ({
+            turn:0,
+            score: [0,0],
+            historico:[],
+            table: ['', '', '', '', '', '', '', '', ''],
+            winner: [],
+          }));
+    }
+    
+
+    function setBot(e: boolean){
+        reset();
+        setGame((prevObjeto: any) => ({
+            ...prevObjeto,
+            players: e === true ? ["Player 1","COMP."]:["Player 1","Player 2"],
+            bot: e
+          }));
+    }
 
     return (
         <>
@@ -17,9 +33,10 @@ function Home( props:  any ) {
         <section className="home">
             <figure> </figure>
             <div className="botao">
+                <Link to="/pick"><button onClick={() => {setBot(false)}}><p>P1</p><span>vs</span><p>P2</p></button></Link>
+                <Link to="/pick"><button onClick={() => {setBot(true)}}><span>vs</span><p>COMP.</p></button></Link>
                 
-                <button onClick={() => {setAdversario(0)}}><p>P1</p><span>vs</span><p>P2</p></button>
-                <button onClick={() => {setAdversario(1)}}><span>vs</span><p>COMP.</p></button>
+                
             </div>
         </section>
         </>

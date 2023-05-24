@@ -22,10 +22,8 @@ main{
   flex-direction: column;
   align-items: center;
   max-width: 566px;
-  
-
 }
 
-.link{
+a{
   text-decoration: none;
 }

@@ -1,29 +1,26 @@
 import { Link } from "react-router-dom"
 import "./style.css"
-import Play from "../Play/"
+import React , { useContext } from 'react';
+import tttContext from "../../context/TicTacToe.ts";
 
-export default function Choice(props: any){
-    const setPaginaAtual = (e: any) => {
-        props.paginaAtual(e);
-    };
+export default function Choice(){
 
-    const setPickOne = (e: any) => {
-        props.pick(e);
-    };    
-
-    const letsGoPlay = (e: any) => {
-        setPaginaAtual(3);
-        setPickOne(e);
+    const {game, setGame}: any = useContext(tttContext);
+    function setPick(e: number){
+        setGame((prevObjeto: any) => ({
+            ...prevObjeto,
+            pick: e === 0 ? ['x','o'] : ['o','x']
+          }));
     }
 
     return (
         <section className="choice">
-            <figure> </figure>
+            <Link to="../"><figure> </figure></Link>
             <div className="pick"><p>P1, faça sua escolha:</p></div>
             
             <div className="botao">
-                <button onClick={() => {letsGoPlay(true)}}><div className="choice-x"></div></button>
-                <button onClick={() => {letsGoPlay(false)}}><div className="choice-o"></div></button>
+                <Link to="/play"><button onClick={() => {setPick(0)}}><div className="choice-x"></div></button></Link>
+                <Link to="/play"><button onClick={() => {setPick(1)}}><div className="choice-o"></div></button></Link>
             </div>
         </section>
     )

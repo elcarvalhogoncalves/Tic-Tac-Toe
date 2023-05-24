@@ -4,109 +4,206 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse } from '@fortawesome/free-solid-svg-icons'
 import { faRotateRight,faChevronDown, faChevronUp, faUser, faRobot } from '@fortawesome/free-solid-svg-icons'
 import Celula from "../../components/Celula"
-import { useState } from "react"
+import React , { useContext, useState, useEffect } from 'react';
+import tttContext from "../../context/TicTacToe.ts";
+import { Link } from "react-router-dom"
+// let ganhador
 
-let ganhador
+// function checkVencedor(e: any){
+//     //VERIFICAR AS LINHAS
+//     if(e[0] === e[1] && e[0] === e[2] && e[0] != ''){
+//         ganhador = e
+//         return([0,1,2])
+//     } else 
+//     if(e[3] === e[4] && e[3] === e[5] && e[3] != ''){
+//         ganhador = e
+//         return([3,4,5])
+//     } else 
+//     if(e[6] === e[7] && e[6] === e[8] && e[6] != ''){
+//         ganhador = e
+//         return([6,7,8])
+//     }
 
-function checkVencedor(e: any){
-    //VERIFICAR AS LINHAS
-    if(e[0] === e[1] && e[0] === e[2] && e[0] != ''){
-        ganhador = e
-        return([0,1,2])
-    } else 
-    if(e[3] === e[4] && e[3] === e[5] && e[3] != ''){
-        ganhador = e
-        return([3,4,5])
-    } else 
-    if(e[6] === e[7] && e[6] === e[8] && e[6] != ''){
-        ganhador = e
-        return([6,7,8])
+//     //VERIFICAR AS COLUNAS
+//     if(e[0] === e[3] && e[0] === e[6] && e[0] != ''){
+//         ganhador = e
+//         return([0,3,6])
+//     } else 
+//     if(e[1] === e[4] && e[1] === e[7] && e[1] != ''){
+//         ganhador = e
+//         return([1,4,7])
+//     } else 
+//     if(e[2] === e[5] && e[2] === e[8] && e[2] != ''){
+//         ganhador = e
+//         return([2,5,8])
+//     }        
+
+//     //VERIFICAR AS DIAGONAIS
+//     if(e[0] === e[4] && e[0] === e[8] && e[0] != ''){
+//         ganhador = e
+//         return([0,4,8])
+//     } else 
+//     if(e[2] === e[4] && e[2] === e[6] && e[2] != ''){
+//         ganhador = e
+//         return([2,4,6])
+//     } else 
+//     if(e.every((item: any) => item != '')) {
+//         ganhador = "velha"
+//         return([9])
+//     }
+//     return([10])
+// }
+export default function Play(){
+    
+    const [rst, setReset] = useState(true);
+    const [sHistorico, setShowHistorico] = useState(false);
+    const {game, setGame}: any = useContext(tttContext);
+
+
+    function turnAround(){
+        
+        if(checkWhoWin()) return
+        setGame((prevObjeto: any) => ({
+            ...prevObjeto,
+            turn: (game.turn === 0 ? 1 : 0),
+        }));
+
+        if(game.turn === 0 ){
+            setGame((prevObjeto: any) => ({
+                ...prevObjeto,
+                jogadaBot: mrRobot(),
+              }));
+        }
+    }    
+
+
+    function checkWhoWin(){
+        if(whoWin(game.table) != null){
+            const winner = whoWin(game.table);
+            if(winner.length === 1){
+                showHistorico();
+                addHistorico("velha")
+                return true
+            } else if(winner.length > 1){
+                setGame((prevObjeto: any) => ({
+                    ...prevObjeto,
+                    winner: winner,
+                  }));
+                addHistorico(game.pick[0]===game.table[winner[0]] ? `${game.players[0]}` : `${game.players[1]}`)
+                addScore(game.pick[0]===game.table[winner[0]] ? 0 : 1)
+                return true
+            }
+        }
+        return false
     }
 
-    //VERIFICAR AS COLUNAS
-    if(e[0] === e[3] && e[0] === e[6] && e[0] != ''){
-        ganhador = e
-        return([0,3,6])
-    } else 
-    if(e[1] === e[4] && e[1] === e[7] && e[1] != ''){
-        ganhador = e
-        return([1,4,7])
-    } else 
-    if(e[2] === e[5] && e[2] === e[8] && e[2] != ''){
-        ganhador = e
-        return([2,5,8])
-    }        
+    
+    function whoWin(e:any){
+        //VERIFICAR AS LINHAS
+        if(e[0] === e[1] && e[0] === e[2] && e[0] != ''){
+            return([0,1,2])
+        } else 
+        if(e[3] === e[4] && e[3] === e[5] && e[3] != ''){
+            return([3,4,5])
+        } else 
+        if(e[6] === e[7] && e[6] === e[8] && e[6] != ''){
+            return([6,7,8])
+        }
 
-    //VERIFICAR AS DIAGONAIS
-    if(e[0] === e[4] && e[0] === e[8] && e[0] != ''){
-        ganhador = e
-        return([0,4,8])
-    } else 
-    if(e[2] === e[4] && e[2] === e[6] && e[2] != ''){
-        ganhador = e
-        return([2,4,6])
-    } else 
-    if(e.every((item: any) => item != '')) {
-        ganhador = "velha"
-        return([9])
+        //VERIFICAR AS COLUNAS
+        if(e[0] === e[3] && e[0] === e[6] && e[0] != ''){
+            return([0,3,6])
+        } else 
+        if(e[1] === e[4] && e[1] === e[7] && e[1] != ''){
+            return([1,4,7])
+        } else 
+        if(e[2] === e[5] && e[2] === e[8] && e[2] != ''){
+            return([2,5,8])
+        }        
+
+        //VERIFICAR AS DIAGONAIS
+        if(e[0] === e[4] && e[0] === e[8] && e[0] != ''){
+            return([0,4,8])
+        } else 
+        if(e[2] === e[4] && e[2] === e[6] && e[2] != ''){
+            return([2,4,6])
+        } else 
+        if(e.every((item: any) => item != '')) {
+            return ([9])
+        }
+        return []
     }
-    return([10])
-}
-export default function Play(props: any){
 
-
-
-
-
-
-    const [reset, setReset] = useState(false)
-    
-    
-    const players = props.pick;
-
-    const [tictactoe, setTTT] = useState(['','','','','','','','',''])
-    const [result, setResult] = useState();
-
-    checkVencedor(tictactoe);
-    console.log(result)
-
-    const arrayAux = [...tictactoe];
-    
-    const setPaginaAtual = (e: any) => {
-        props.paginaAtual(e);
-    };
-
-    const comeHome = () => {
-        setPaginaAtual(1);
-        props.reset();
+    function addHistorico(e:any){
+        const string = e != 'velha' ? `${e} ganhou`: <strong>Aah, deu velha...</strong>
+        setGame((prevObjeto: any) => ({
+            ...prevObjeto,
+            historico: [...game.historico, string],
+          }));
+        //console.log(string)
     }
-    const restartPlay = () => {
-        props.reset(players[0].pick)
-        const arrayAux = ['','','','','','','','',''];
-        setTTT(arrayAux);
-        setReset(!reset)
-    }   
+
+    function addScore(e:any){
+        setGame((prevObjeto: any) => ({
+            ...prevObjeto,
+            score: [e === 0 ? game.score[0]++ : game.score[0] , e === 1 ? game.score[1]++ : game.score[1]],
+          }));
+    }
+
+    function reset(){
+        setGame((prevObjeto: any) => ({
+            ...prevObjeto,
+            turn: 0,
+            table: ['', '', '', '', '', '', '', '', ''],
+            winner: [],
+          }));
+          sHistorico === true ? showHistorico():'';
+          setReset(!rst);
+    }
+
+    function showHistorico(){
+        setShowHistorico(!sHistorico);
+    }
+
+    function findIndices(arr: any[], condition: { (element: any): boolean; (arg0: any): any }) {
+        return arr.reduce((indices: any[], element: any, index: any) => {
+          if (condition(element)) {
+            indices.push(index);
+          }
+          return indices;
+        }, []);
+      }
+
+    function getRandomValue<T>(arr: T[]): T | undefined {
+        if (arr.length === 0) {
+            return undefined;
+        }
+        
+        const randomIndex = Math.floor(Math.random() * arr.length);
+        return arr[randomIndex];
+    }
     
-    const turnChange = () =>{
-        props.turnChange();
-    };
-    
-    // console.log(tictactoe)
+    function mrRobot(){
+        const quadrasDisponiveis = findIndices(game.table, (element: string) => element === '');
+        return getRandomValue(quadrasDisponiveis)
+    }
+
+
     return (
         <section className="play">
             
             <section className="top">
-                <figure> </figure>
+            <Link to="../"><figure> </figure></Link>
                 <div className="button-top">
-                    <div onClick={() => {comeHome()}} className="but" ><FontAwesomeIcon icon={faHouse} size="2xs" style={{color: "#ffffff",}} /></div>
-                    <div onClick={() => {restartPlay()}} className="but but_red" ><FontAwesomeIcon icon={faRotateRight} size="2xs" style={{color: "#ffffff",}} /></div>
+                    
+                    <div onClick={() => {reset()}} className="but but_red" ><FontAwesomeIcon icon={faRotateRight} size="2xs" style={{color: "#ffffff",}} /></div>
                 </div>
             </section>
 
             <section className="score-bar">
-                <div className={`score ${props.turn === 0 ? 'turn' : '' }`}>
+                <div className={`score ${game.turn === 0 ? 'turn' : '' }`}>
                     <div className="player">
-                        <p>{players[0].nome}</p>
+                        <p>{game.players[0]}</p>
                         <div className="playerPhoto">
                             <FontAwesomeIcon icon={faUser} />
                         </div>
@@ -114,55 +211,74 @@ export default function Play(props: any){
 
                     <div className="scorePlayer">
                         <h3>Score</h3>
-                        <p>{players[0].score}</p>
+                        <p>{game.score[0]}</p>
                     </div>
                 </div>
                 <p>vs</p>
-                <div className={`score ${props.turn === 1 ? 'turn' : '' }`}>
+                <div className={`score ${game.turn === 1 ? 'turn' : '' }`}>
                     <div className="player">
-                        <p>{players[1].nome}</p>
+                        <p>{game.players[1]}</p>
                         <div className="playerPhoto">
-                            <FontAwesomeIcon icon={faRobot} />
+                            {game.bot === true ? <FontAwesomeIcon icon={faRobot} /> : <FontAwesomeIcon icon={faUser} />}
                         </div>
                     </div>
                     <div className="scorePlayer">
                         <h3>Score</h3>
-                        <p>{players[1].score}</p>
+                        <p>{game.score[1]}</p>
                     </div>
                 </div>
             </section>
 
             <section className="historico">
-                <p>Histórico <FontAwesomeIcon icon={faChevronDown} /></p>
+                <p onClick={showHistorico}>Histórico {sHistorico === true ? <FontAwesomeIcon icon={faChevronUp} /> : <FontAwesomeIcon icon={faChevronDown} />}</p>
+                {
+                    sHistorico === true ? 
+                        <section className="list">
+                            {(game.historico).length > 0 ? (
+                            <ul>
+                            {game.historico.map((item: any, index: any) => (
+                                <p key={index}>{item}</p>
+                            ))}
+                            </ul>
+                        ) : (
+                            <p>Histórico vazio.</p>
+                            )}
+                            
+                        </section>
+                    : ''
+
+
+                }
+
             </section>
             
             <section className="game">
-                <div onClick={() => {arrayAux[0] = players[props.turn].pick === true ? "x":"o"; setTTT(arrayAux)}} className="celula celula-c1">
-                    <Celula turn={players[props.turn].pick} turnChange={turnChange} win={checkVencedor(tictactoe)[0] === 10 ? 0 : checkVencedor(tictactoe).includes(0) === true ? 1 : -1} reset={reset}/>
+                <div className="celula celula-c1">
+                    <Celula id={0} turnChange={turnAround} reset={rst}/>
                 </div>
-                <div onClick={() => {arrayAux[1] = players[props.turn].pick === true ? "x":"o"; setTTT(arrayAux)}} className="celula celula-c2">
-                    <Celula turn={players[props.turn].pick} turnChange={turnChange} win={checkVencedor(tictactoe)[0] === 10 ? 0 : checkVencedor(tictactoe).includes(1) === true ? 1 : -1} reset={reset}/>
+                <div className="celula celula-c2">
+                    <Celula id={1} turnChange={turnAround} reset={rst}/>
                 </div>
-                <div onClick={() => {arrayAux[2] = players[props.turn].pick === true ? "x":"o"; setTTT(arrayAux)}} className="celula celula-c3">
-                    <Celula turn={players[props.turn].pick} turnChange={turnChange} win={checkVencedor(tictactoe)[0] === 10 ? 0 : checkVencedor(tictactoe).includes(2) === true ? 1 : -1} reset={reset}/>
+                <div className="celula celula-c3">
+                    <Celula id={2} turnChange={turnAround} reset={rst}/>
                 </div>
-                <div onClick={() => {arrayAux[3] = players[props.turn].pick === true ? "x":"o"; setTTT(arrayAux)}} className="celula celula-c4">
-                    <Celula turn={players[props.turn].pick} turnChange={turnChange} win={checkVencedor(tictactoe)[0] === 10 ? 0 : checkVencedor(tictactoe).includes(3) === true ? 1 : -1} reset={reset}/>
+                <div className="celula celula-c4">
+                    <Celula id={3} turnChange={turnAround} reset={rst}/>
                 </div>
-                <div onClick={() => {arrayAux[4] = players[props.turn].pick === true ? "x":"o"; setTTT(arrayAux)}} className="celula">
-                    <Celula turn={players[props.turn].pick} turnChange={turnChange} win={checkVencedor(tictactoe)[0] === 10 ? 0 : checkVencedor(tictactoe).includes(4) === true ? 1 : -1} reset={reset}/>
+                <div className="celula">
+                    <Celula id={4} turnChange={turnAround} reset={rst}/>
                 </div>
-                <div onClick={() => {arrayAux[5] = players[props.turn].pick === true ? "x":"o"; setTTT(arrayAux)}} className="celula celula-c6">
-                    <Celula turn={players[props.turn].pick} turnChange={turnChange} win={checkVencedor(tictactoe)[0] === 10 ? 0 : checkVencedor(tictactoe).includes(5) === true ? 1 : -1} reset={reset}/>
+                <div className="celula celula-c6">
+                    <Celula id={5} turnChange={turnAround} reset={rst}/>
                 </div>
-                <div onClick={() => {arrayAux[6] = players[props.turn].pick === true ? "x":"o"; setTTT(arrayAux)}} className="celula celula-c7">
-                    <Celula turn={players[props.turn].pick} turnChange={turnChange} win={checkVencedor(tictactoe)[0] === 10 ? 0 : checkVencedor(tictactoe).includes(6) === true ? 1 : -1} reset={reset}/>
+                <div className="celula celula-c7">
+                    <Celula id={6} turnChange={turnAround} reset={rst}/>
                 </div>
-                <div onClick={() => {arrayAux[7] = players[props.turn].pick === true ? "x":"o"; setTTT(arrayAux)}} className="celula celula-c8">
-                    <Celula turn={players[props.turn].pick} turnChange={turnChange} win={checkVencedor(tictactoe)[0] === 10 ? 0 : checkVencedor(tictactoe).includes(7) === true ? 1 : -1} reset={reset}/>
+                <div className="celula celula-c8">
+                    <Celula id={7} turnChange={turnAround} reset={rst}/>
                 </div>
-                <div onClick={() => {arrayAux[8] = players[props.turn].pick === true ? "x":"o"; setTTT(arrayAux)}} className="celula celula-c9">
-                    <Celula turn={players[props.turn].pick} turnChange={turnChange} win={checkVencedor(tictactoe)[0] === 10 ? 0 : checkVencedor(tictactoe).includes(8) === true ? 1 : -1} reset={reset}/>                    
+                <div className="celula celula-c9">
+                    <Celula id={8} turnChange={turnAround} reset={rst}/>                    
                 </div>
 
             </section>

@@ -1,66 +1,50 @@
 import { useState } from 'react'
 import { BrowserRouter, Routes , Route, Link } from "react-router-dom"
+import { Outlet } from 'react-router-dom'
+import tttContext from './context/TicTacToe.ts'
 import './App.css'
 
 // Paginas
 import Home from "./pages/Home/index.tsx"
-import Pick from "./pages/Choice/"
-import Play from "./pages/Play/"
+import Pick from "./pages/Choice/index.tsx"
+import Play from "./pages/Play/index.tsx"
 
 import Footer from "./components/Footer.tsx"
 
+interface IGame{
+  players: string[],
+  turn:number,
+  bot:boolean,
+  jogadaBot:number,
+  pick: string[],
+  score: number[],
+  historico: never[],
+  table: string[],
+  winner: never[],
+}
+
 function App() {
-  const [paginaAtual, setPaginaAtual] = useState(1);
-  
-
-  const [historico, setHistorico] = useState([]);
-  const [bot, setBot] = useState(0);
-  const [turn, setTurn] = useState(0)
-
-  const [players, setPlayers] = useState([{nome:'', pick:'', score:''},{nome:'', pick:'', score:0}])
-
-  const reset = (e: any) => {
-    console.log(e)
-    const attPlayers = [{nome:'Player 1', pick:e, score: 0},{nome:(bot === 0 ? 'Player 2' : 'Comp'), pick:!e, score: 0}]
-    setPlayers(attPlayers)
-    setHistorico([])
-    setTurn(0)
-  };
-
-  const turnChange = () => {
-    turn === 0 ? setTurn(1) : setTurn(0)
-  }
-
-  const setAdversario = (e: any) => {
-    e === 0 ? setBot(0):setBot(1);
-  }
-
-  const whatPickOne = (e: any) => {
-    const attPlayers = [{nome:'Player 1', pick:e, score: 0},{nome:(bot === 0 ? 'Player 2' : 'Comp'), pick:!e, score: 0}]
-    setPlayers(attPlayers)
-  };
-
-  let paginaRenderizada
-
-    switch(paginaAtual) {
-      case 1:
-        paginaRenderizada = <Home paginaAtual={setPaginaAtual} adversario={setAdversario} />;
-        break
-      case 2:
-        paginaRenderizada = <Pick paginaAtual={setPaginaAtual} pick={whatPickOne} />;
-        break
-      case 3:
-        paginaRenderizada = <Play reset={reset} paginaAtual={setPaginaAtual} turn={turn} pick={players} turnChange={turnChange} />;
-        break
-      default:
-        paginaRenderizada = null;
-        console.log("Erro")
+  const [game, setGame] = useState<IGame>(
+    {
+      players: ['Player 1','COMP.'],
+      turn:0,
+      bot:true,
+      jogadaBot:10,
+      pick: ['x','o'],
+      score: [0,0],
+      historico:[],
+      table: ['', '', '', '', '', '', '', '', ''],
+      winner: [],
     }
+  );
 
-  return (
+  console.log(game)
+   return (
     <main>
       <div>
-      {paginaRenderizada}
+      <tttContext.Provider value={{game, setGame}}>
+        <Outlet />
+      </tttContext.Provider>
     </div>
       <Footer />
     </main>
@@ -68,3 +52,4 @@ function App() {
 }
 
 export default App
+

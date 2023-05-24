@@ -188,8 +188,29 @@
 }    
 
 .historico {
+    position: relative;
     width: 100%;
     justify-content: end;
+}
+
+.historico .list{
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 7px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    border-radius: 8px;
+    position: absolute;
+    width: 100%;
+    background-color: rgba(90, 29, 154, 0.75);
+    color: #fff;
+    max-height: 120px;
+    overflow-y: auto;
+}
+.historico .list p{
+    text-align: start;
+    
 }
 
 .historico p{
@@ -199,6 +220,7 @@
     font-weight: 500;
     font-size: 14px;
     color: #fff;
+    cursor: pointer;
 }   
 
 
