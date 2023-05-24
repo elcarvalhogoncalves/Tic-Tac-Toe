@@ -32,7 +32,7 @@ function App() {
     }
   );
 
-  console.log(game)
+  //console.log(game)
    return (
     <main>
       <div>
