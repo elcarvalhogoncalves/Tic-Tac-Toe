@@ -3,8 +3,10 @@ import { Outlet } from 'react-router-dom'
 import tttContext from './context/TicTacToe.ts'
 import './App.css'
 
+// COMPONENTS
 import Footer from "./components/Footer.tsx"
 
+// INTERFACE PARA O CONTEXTO
 interface IGame{
   players: string[],
   turn:number,
@@ -18,12 +20,14 @@ interface IGame{
 }
 
 function App() {
+
+  // ESTABELECENDO O ESTADO INICIAL DO CONTEXTO
   const [game, setGame] = useState<IGame>(
     {
       players: ['Player 1','COMP.'],
       turn:0,
       bot:true,
-      jogadaBot:10,
+      jogadaBot:99,
       pick: ['x','o'],
       score: [0,0],
       historico:[],
@@ -32,10 +36,10 @@ function App() {
     }
   );
 
-  //console.log(game)
    return (
     <main>
       <div>
+        {/* RENDERIZAÇÃO DO CONTEXTO E DO COMPONENTE DE ROTAS */}
       <tttContext.Provider value={{game, setGame}}>
         <Outlet />
       </tttContext.Provider>

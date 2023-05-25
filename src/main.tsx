@@ -6,11 +6,12 @@ import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 
-
+// PAGINAS
 import Home from './pages/Home'
 import Pick from './pages/Choice' 
 import Play from './pages/Play'
 
+// ESTABELECENDO AS ROTAS
 const router = createBrowserRouter([
   {
     path: "/",
@@ -26,8 +27,6 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-
       <RouterProvider router={router} />
-
   </React.StrictMode>,
 )

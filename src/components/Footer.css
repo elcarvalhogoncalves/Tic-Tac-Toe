@@ -1,16 +1,17 @@
-footer p{
-    font-family: 'Open Sans';
-    font-style: normal;
+footer p {
+    font-family: "Open Sans";
+    font-style : normal;
     font-weight: 400;
-    font-size: 16px;
+    font-size  : 16px;
     line-height: 22px;
-    color: #FFFFFF;
-    text-align: center;
+    color      : #ffffff;
+    text-align : center;
     text-shadow: -2px 2px 2px rgba(0, 0, 0, 0.5);
-}
-
-@media screen and (max-width:570px) {
-    footer p{
-        font-size: 13px;
+  }
+  
+  @media screen and (max-width: 570px) {
+    footer p {
+      font-size: 13px;
     }
-}
+  }
+  
