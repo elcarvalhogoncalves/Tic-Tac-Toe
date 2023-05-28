@@ -60,30 +60,23 @@ export default function Play() {
   // FUNÇÃO DO ROBO QUE RETORNA QUAL O CAMPO QUE ELE VAI JOGAR
   function mrRobot() {
     const quadrasDisponiveis = findIndices(
-      game.table,
-      (element: string) => element === ""
+      game.table,""
     );
     return getRandomValue(quadrasDisponiveis);
   }
-  // FUNÇÃO PARA ACHAR OS CAMPOS VAZIOS      OBS: FUNÇÃO GERADA PELO CHATGPT
-  function findIndices(
-    arr: any[],
-    condition: { (element: any): boolean; (arg0: any): any }
-  ) {
-    return arr.reduce((indices: any[], element: any, index: any) => {
-      if (condition(element)) {
-        indices.push(index);
-      }
-      return indices;
-    }, []);
+  // FUNÇÃO PARA ACHAR OS CAMPOS VAZIOS
+  function findIndices(arr: any[], str: any) {
+      const indices = arr
+      .map((elemento, índice) => (elemento == str ? índice : 99))
+      .filter((índice) => índice !== 99);
+    return indices;
   }
 
-  // FUNÇÃO PARA GERAR VALOR ALEATÓRIO PARA O ROBO PODER JOGAR         OBS: FUNÇÃO GERADA PELO CHATGPT
-  function getRandomValue<T>(arr: T[]): T | undefined {
+  // FUNÇÃO PARA GERAR VALOR ALEATÓRIO PARA O ROBO PODER JOGAR
+  function getRandomValue(arr: any) {
     if (arr.length === 0) {
       return undefined;
     }
-
     const randomIndex = Math.floor(Math.random() * arr.length);
     return arr[randomIndex];
   }
